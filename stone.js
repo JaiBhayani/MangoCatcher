@@ -1,7 +1,7 @@
 
 class Stone
 {
-	constructor(x,y)
+	constructor(x,y, r)
 	{
 		var options={
 			isStatic:false,
@@ -12,8 +12,8 @@ class Stone
 			}
 		this.x=x;
 		this.y=y;
-		
-		this.body=Bodies.rectangle(x, y, 10,10);
+		this.r = r
+		this.body=Bodies.circle(this.x, this.y, this.r/2, options );
 		World.add(world, this.body);
 		this.image = loadImage("Pluckingmangoes/stone.png");
 
@@ -28,7 +28,7 @@ class Stone
 			imageMode(CENTER)
 			//strokeWeight(3);
 			//fill("red")
-			image(this.image,0,0,this.r, this.r);
+			image(this.image,0,0,this.r*2, this.r*2);
 			pop()
 			
 			

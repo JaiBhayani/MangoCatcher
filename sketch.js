@@ -3,30 +3,42 @@ const Engine = Matter.Engine;
 const World = Matter.World;
 const Bodies = Matter.Bodies;
 const Body = Matter.Body;
+const Constraint = Matter.Constraint;
 
-var boy, stone, tree
+var boy, stone, tree, treeIMG, boyIMG;
 var mango1, mango2, mango3, mango3, mango4, mango5, mango6;
+var ground;
+var pelter;
 
 function preload()
 {
-	
+	treeIMG = loadImage("Pluckingmangoes/tree.png");
+	boyIMG = loadImage("Pluckingmangoes/boy.png");
 }
 
 function setup() {
-	createCanvas(800, 700);
+	createCanvas(1200, 800);
 
 
 	engine = Engine.create();
 	world = engine.world;
 
-	boy = new Boy(200,100,70,70);
-	stone = new Stone(180,80,70,70);
-	tree = new Tree(300,100,70,70);
+	ground = new Ground(800,750,1600,20);
 
-	mango1 = new Mango(310,100,70,70);
-	mango2 = new Mango(290,110,70,70);
-	mango3 = new Mango(270,120,70,70);
-	mango4 = new Mango(277,115,70,70);
+	
+	
+	stone = new Stone(180,80,30);
+	
+	
+
+	mango1 = new Mango(700,400,30);
+	
+	mango2 = new Mango(800,450,30);
+	mango3 = new Mango(890,400,30);
+	
+	mango4 = new Mango(950,300,30);
+
+	pelter = new SlingShot(stone,{x:100,y:600});
 
 	//Create the Bodies Here.
 
@@ -39,17 +51,24 @@ function setup() {
 function draw() {
   rectMode(CENTER);
 
+
   background(255);
+text(mouseX+","+mouseY,mouseX,mouseY);
+  	imageMode(CENTER);
+	image(treeIMG,900,500,500,500);
+	imageMode(CENTER);
+	image(boyIMG,200,670,300,300);
   
-  boy.display();
+  //boy.display();
   stone.display();
-  tree.display();
+  //tree.display();
   mango1.display();
-  mango2.display();
+ 	mango2.display();
   mango3.display();
   mango4.display();
+  ground.display();
+  pelter.display();
   
-  drawSprites();
  
 }
 
